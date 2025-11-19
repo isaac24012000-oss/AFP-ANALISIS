@@ -15,6 +15,8 @@ El dashboard presenta:
 - **Tablas Jerárquicas**: Visualización de carteras con asesores asociados
 - **Métricas Comparativas**: Montos totales, clientes y asesores por equipo
 - **Gráficos Interactivos**: Análisis por cartera y desempeño individual
+- **Tabla HOY x HOY**: Análisis cruzado de fechas de gestión vs fechas de promesa
+- **Filtrado por Equipo**: Botones para filtrar entre WORLDTEL, GI CORONADO o TODOS
 - **Formato en Moneda Local**: Todos los montos expresados en Soles Peruanos (S/)
 - **Interfaz Responsive**: Diseño adaptado para diferentes tamaños de pantalla
 
@@ -97,7 +99,48 @@ Ubicación esperada: `./ANALISIS WORLDTEL.xlsx`
 
 **Nota**: Este archivo no se incluye en el repositorio por razones de confidencialidad.
 
+### Hojas del Libro Excel
+
+El archivo contiene dos hojas principales:
+
+#### 1. **CIERRE DE PAGOS**
+Contiene el análisis comparativo entre WORLDTEL y GI CORONADO:
+- **Cartera**: Nombre de la cartera (hierárquica)
+- **Asesor**: Nombre del asesor
+- **EQUIPO**: WORLDTEL o GI CORONADO
+- **MONTO**: Monto en Soles Peruanos (S/)
+- **CLIENTES**: Cantidad de clientes
+- **PROMESA**: Estado de promesa de pago
+
+Visualización: Tabla jerárquica con gráficos comparativos.
+
+#### 2. **GESTIONES**
+Contiene el registro detallado de gestiones de cobro:
+- **FECHA_GESTION**: Fecha en la que se realizó la gestión
+- **FECHA_PROMESA**: Fecha de la promesa de pago
+- **MONTO_PROMESA**: Monto de la promesa en S/
+- **EQUIPO**: WORLDTEL o GI CORONADO
+
+Visualización: **Tabla HOY x HOY** (Tabla Cruzada)
+- **Filas**: Fechas de gestión (DD/MM/AA)
+- **Columnas**: Fechas de promesa (DD/MM/AA)
+- **Valores**: Montos prometidos
+- **Filtros**: Botones para seleccionar equipo
+
 ## 🎨 Personalización
+
+### Tabla HOY x HOY
+La tabla HOY x HOY muestra un análisis cruzado de fechas:
+- **Filas (HOY 1)**: Fecha en que se realizó la gestión de cobro
+- **Columnas (HOY 2)**: Fecha en que el cliente prometió pagar
+- **Celdas**: Monto total prometido para esa combinación de fechas
+
+**Cómo usar**:
+1. Selecciona el equipo usando los botones (WORLDTEL, GI CORONADO o TODOS)
+2. La tabla se actualiza automáticamente
+3. Observa el patrón de gestiones vs promesas
+4. La fila "TOTAL" muestra el monto por fecha de promesa
+5. La columna "TOTAL" muestra el monto por fecha de gestión
 
 ### Cambiar equipos
 Edita la lista `equipo_worldtel` en `dashboard.py`:
@@ -117,12 +160,43 @@ ruta_archivo = r"ruta/a/tu/archivo.xlsx"
 
 ## 📝 Cambios Recientes
 
+### v2.0.0
+- ✨ Nueva visualización: Tabla HOY x HOY (análisis cruzado de fechas)
+- 📋 Lectura de segunda hoja "GESTIONES" del Excel
+- 🔘 Filtrado por equipo con botones interactivos
+- 📅 Formato de fecha estandarizado (DD/MM/AA)
+- ✅ Interfaz optimizada y compactada
+
 ### v1.0.0
 - Estructura jerárquica por carteras
 - Tablas con colores destacados para carteras
 - Todas las columnas reordenadas para mejor visualización
 - Moneda en Soles Peruanos (S/)
 - Gráficos comparativos mejorados
+
+## 📦 Versiones de Dependencias
+
+### Requisitos Recomendados (`requirements.txt`)
+```
+streamlit>=1.28.0
+pandas>=1.5.0
+plotly>=5.0.0
+openpyxl>=3.9.0
+```
+
+### Requisitos Ligeros (`requirements-light.txt`)
+Para usar si tienes problemas de instalación en Streamlit Cloud:
+```
+streamlit>=1.0.0
+pandas>=1.0.0
+plotly>=5.0.0
+openpyxl>=3.0.0
+```
+
+**Para actualizar paquetes**:
+```bash
+pip install --upgrade -r requirements.txt
+```
 
 ## 🤝 Contribuciones
 
