@@ -1,14 +1,4 @@
-# Dashboard Análisis WORLDTEL - Requisitos Python
-# Ejecutar: pip install -r requirements.txt
-
-# Framework web interactivo
-streamlit>=1.28.0
-
-# Manipulación y análisis de datos
-pandas>=1.5.0
-
-# Visualizaciones interactivas
-plotly>=5.0.0
-
-# Lectura de archivos Excel
-openpyxl>=3.9.0
+streamlit
+pandas
+plotly
+openpyxl
